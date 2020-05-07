@@ -27,6 +27,7 @@ jobs:
   job3:
     runs-on: ubuntu-latest
     needs: job2
+    if: github.ref == 'refs/heads/master'
     steps:
     - name: job3
       run: echo "job3"
