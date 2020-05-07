@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Test
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -14,11 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: job1
-      run: echo "job1"
+      env:
+        MESSAGE: ${{ github.ref }}
+      run: echo "$MESSAGE"
   job2:
     runs-on: ubuntu-latest
     needs: job1
-    if: github.ref != 'master'
+    if: github.ref != 'refs/heads/master'
     steps:
     - name: job2
       run: echo "job2"
